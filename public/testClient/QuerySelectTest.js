@@ -143,6 +143,29 @@ const getPostByTag = (nomeTag) => {
 };
 
 
+// getBest
+const getBest = () => {
+  return new Promise((resolve, reject) => {
+    fetch("/profilo", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Errore nella richiesta");
+        }
+        return response.json();
+      })
+      .then((json) => {
+        resolve(json.id);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
 //PROFILO GETID
 const getIDProfilo = (username) => {
   return new Promise((resolve, reject) => {
@@ -197,7 +220,7 @@ Button.onclick = () => {
       console.error("Error", error);
     });
 
-  //TEST POST profiloDetails BY ID
+  //TEST POST getSeguiti BY ID
     getSeguiti(1)
     .then((result) => {
       console.log("getSeguiti", result); //Restituisce vuoto per ora
@@ -206,7 +229,7 @@ Button.onclick = () => {
       console.error("Error", error);
     });
 
-  
+  //TEST POST getPostByTag BY ID
     getPostByTag("#NoScuola")
   .then((result) => {
     console.log("getPostByTag", result); //Restituisce vuoto per ora
@@ -215,6 +238,14 @@ Button.onclick = () => {
     console.error("Error", error);
   });
 
+  //TEST POST getBest BY ID
+  getBest("")
+  .then((result) => {
+    console.log("getBest", result); //Restituisce vuoto per ora
+  })
+  .catch((error) => {
+    console.error("Error", error);
+  });
   
   //Test getNomeUtente & getFollowers
   getNomeUtente(1)
