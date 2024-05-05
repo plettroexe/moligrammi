@@ -425,6 +425,25 @@ app.post("/insertInterazione", (req, res) => {
   deleteLikeCommento(req.codice,req.name,req.idPost);
 });
 
+//FUNZIONE PER VISUALIZZARE TUTTI I POST CHE USANO UN TAG, PRENDE IN INGRESSO IL NOME DEL TAG.
+
+const getPostByTag = (nomeTag) => {
+  return new Promise((resolve, reject) => {
+    const template =" SELECT * FROM Post WHERE nomeTag='%NOMETAG'";
+    const sql = template.replace( "%NOMETAG", nomeTag);
+    executeQuery(sql).then((result)=>{
+      resolve(result); 
+    })
+  });
+};
+
+app.post("/postbytag", (req, res) => {
+getPostByTag(req.nomeTag).then((result)=>{
+    res.json({ matrice: result });
+  });
+});
+
+
 //WEBSOCKET
 const { Server } = require('socket.io');
 const io = new Server(server);

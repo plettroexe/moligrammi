@@ -78,6 +78,7 @@ const getSeguiti  = (idprofilo) => {
       });
   });
 };
+//getNomeUtente
 const getNomeUtente  = (idprofilo) => {
   return new Promise((resolve, reject) => {
     fetch("/getSeguiti", {
@@ -96,7 +97,7 @@ const getNomeUtente  = (idprofilo) => {
       });
   });
 };
-
+// getFollowers
 const getFollowers  = (nomeUtente) => {
   return new Promise((resolve, reject) => {
     fetch("/getFollowers", {
@@ -116,6 +117,30 @@ const getFollowers  = (nomeUtente) => {
   });
 };
 
+//PROFILO GetPostByTag
+const getPostByTag = (nomeTag) => {
+  return new Promise((resolve, reject) => {
+    fetch("/postbytag", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ nomeTag: nomeTag }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Errore nella richiesta");
+        }
+        return response.json();
+      })
+      .then((json) => {
+        resolve(json.id);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
 
 
 //PROFILO GETID
@@ -181,6 +206,16 @@ Button.onclick = () => {
       console.error("Error", error);
     });
 
+  
+    getPostByTag("#NoScuola")
+  .then((result) => {
+    console.log("getPostByTag", result); //Restituisce vuoto per ora
+  })
+  .catch((error) => {
+    console.error("Error", error);
+  });
+
+  
   //Test getNomeUtente & getFollowers
   getNomeUtente(1)
   .then((nome) => {
