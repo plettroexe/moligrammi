@@ -1,4 +1,12 @@
 const home = document.getElementById("home");
+const modal = new bootstrap.Modal("#Modal", {});
+const buttModal = document.getElementById("buttonModal");
+
+buttModal.onclick = async () => {
+
+    modal.show();
+
+}
 
 const templateCard = `
 <div class="col-md-4 mt-3">

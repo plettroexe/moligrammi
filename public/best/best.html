@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Home</title>
+        <title>Best</title>
         <link
             href="https://fonts.googleapis.com/css?family=Lexend"
             rel="stylesheet"
@@ -62,10 +62,10 @@
                             >
                         </li>
                         <li class="nav-item">
-                            <button type="button" id="buttonModal" class="nav-link">New Post</button>
+                            <a class="nav-link" href="oldCar.html">New</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/best/best.html">Best</a>
+                            <a class="nav-link" href="cart.html">Best</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="preempted.html"
@@ -96,12 +96,61 @@
         </a>
         <section class="jumbotron text-center">
             <div class="container">
-                <h1 class="display-4">Moligram</h1>
+                <h1 class="display-4">Best of Moligram</h1>
                 <p class="lead">
-                    Social Ufficiale Del Molinari.
+                    Migliori post della settimana.
                 </p>
             </div>
         </section>
+        <br />
+
+        <div
+            class="offcanvas offcanvas-end"
+            tabindex="-1"
+            id="filtriRicercaOffCanvas"
+            aria-labelledby="offcanvasWithBothOptionsLabel"
+        >
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">
+                    Backdrop with scrolling
+                </h5>
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="offcanvas"
+                    aria-label="Close"
+                ></button>
+            </div>
+            <div class="offcanvas-body">
+                <p>
+                    Try scrolling the rest of the page to see this option in
+                    action.
+                </p>
+            </div>
+        </div>
+
+        <div
+            class="modal fade"
+            id="ModalDett"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">
+                        Dettagli Auto
+                    </h1>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    ></button>
+                </div>
+                <div id="descrizione" class="modal-content"></div>
+            </div>
+        </div>
 
         <section class="container">
             <h2 class="text-center mb-4">Home</h2>
@@ -151,34 +200,6 @@
             </div>
             <br />
         </section>
-
-        <!-- MODALE -->
-        <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-fullscreen">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">Crea un nuovo Post</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Immagini -->
-                    <div class="mb-3">
-                      <label for="immagini" class="form-label">Carica immagini (max 5)</label>
-                      <input type="file" class="form-control" id="immagini" name="immagini[]" multiple accept="image/*">
-                    </div>
-                    <!-- Caption -->
-                      <div class="mb-3">
-                        <label for="carburante" class="form-label">Scrivi una caption!</label>
-                        <input type="text" class="form-control" id="carburante">
-                      </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
-                  <button type="button" class="btn btn-primary">Salva</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
         <footer class="bg-dark text-white text-center py-3">
             <p class="mt-3">Hai finito i post per oggi!</p>
