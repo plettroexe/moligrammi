@@ -1,6 +1,7 @@
 const Nome = document.getElementById("Nome");
 const pass = document.getElementById("Password");
 const confPass = document.getElementById("confPass");
+const conferma = document.getElementById("conferma");
 
 const RegisterButton = document.getElementById("Register");
 
@@ -33,6 +34,7 @@ RegisterButton.onclick = () => {
   register(arrayutenze)
     .then((response) => {
       console.log("Response from server:", response);
+      
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -41,3 +43,17 @@ RegisterButton.onclick = () => {
   window.location.href = "/login/login.html";
   }
 };
+
+renderConf();
+
+const templateConf = `
+
+  <div>Bravo ti sei registrato</div>
+
+`;
+
+function renderConf(){
+
+  conferma.innerHTML += templateConf;
+ 
+}
