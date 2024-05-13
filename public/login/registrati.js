@@ -1,6 +1,6 @@
 const Nome = document.getElementById("Nome");
 const pass = document.getElementById("Password");
-const confPass = document.getElementById("confPass");
+const confPass = document.getElementById("Password1");
 const conferma = document.getElementById("conferma");
 
 const RegisterButton = document.getElementById("Register");
@@ -30,7 +30,7 @@ RegisterButton.onclick = () => {
     password: pass.value,
   };
 
-  if(pass === confPass){
+  if(pass.value === confPass.value){
   register(arrayutenze)
     .then((response) => {
       console.log("Response from server:", response);
@@ -41,7 +41,7 @@ RegisterButton.onclick = () => {
     });
 
 
-  window.location.href = "/login/login.html";
+  window.location.href = "/login";
   }
 };
 
