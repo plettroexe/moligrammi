@@ -5,7 +5,7 @@ const pass = document.getElementById("Password");
 // bottone login
 const LoginButton = document.getElementById("Login");
 
-
+//fetch
 const Login = (ArrayUtenze) => {
   return new Promise((resolve, reject) => {
     fetch("/login", {
@@ -25,7 +25,7 @@ const Login = (ArrayUtenze) => {
   });
 };
 
-
+//Login
 LoginButton.onclick = () => {
   let saveArray = {
     username: Nome.value,
@@ -36,7 +36,8 @@ LoginButton.onclick = () => {
     .then((response) => {
       console.log("Response from server:", response);
       if (response.result === "true") {
-          window.location.href = "/testClient/test.html";
+         // window.location.href = "/testClient/test.html";
+        window.location.href = "/home/home.html";
         }
       
     })
