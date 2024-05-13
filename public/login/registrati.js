@@ -34,7 +34,7 @@ RegisterButton.onclick = () => {
   register(arrayutenze)
     .then((response) => {
       console.log("Response from server:", response);
-      
+      stampaConferma();
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -44,16 +44,6 @@ RegisterButton.onclick = () => {
   }
 };
 
-renderConf();
-
-const templateConf = `
-
-  <div>Bravo ti sei registrato</div>
-
-`;
-
-function renderConf(){
-
-  conferma.innerHTML += templateConf;
- 
-}
+function stampaConferma() {
+      conferma.innerText = "Bravo, ti sei registrato!";
+  }
