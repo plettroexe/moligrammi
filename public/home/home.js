@@ -8,6 +8,25 @@ buttModal.onclick = async () => {
 
 }
 
+//prendo tutti i post 
+const getAllPost = () => {
+  return new Promise((resolve, reject) => {
+    fetch("/homepage", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        resolve(json);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
+
 const templateCard = `
 <div class="col-md-4 mt-3">
 <div class="card">

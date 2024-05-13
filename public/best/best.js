@@ -8,6 +8,29 @@ buttModal.onclick = async () => {
 
 }
 
+// getBest
+const getBest = () => {
+  return new Promise((resolve, reject) => {
+    fetch("/theBest", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Errore nella richiesta");
+        }
+        return response.json();
+      })
+      .then((json) => {
+        resolve(json.id);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
 const templateCard = `
 <div class="col-md-4 mt-3">
 <div class="card">

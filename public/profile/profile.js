@@ -8,6 +8,26 @@ buttModal.onclick = async () => {
 
 }
 
+const getPostBy = (NomeProfilo) => {//NomeProfilo Prendi il nome dal localttstorage
+  return new Promise((resolve, reject) => {
+    fetch("/postby", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ idProfilo: NomeProfilo }),
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        resolve(json);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
+
+
 const templateCard = `
 <div class="col-md-4 mt-3">
 <div class="card">
