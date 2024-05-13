@@ -38,6 +38,7 @@ LoginButton.onclick = () => {
       if (response.result === "true") {
           window.location.href = "/testClient/test.html";
         }
+      
     })
     .catch((error) => {
       console.error("Error:", error);
