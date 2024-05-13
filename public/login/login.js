@@ -39,6 +39,7 @@ LoginButton.onclick = () => {
          // window.location.href = "/testClient/test.html";
         window.location.href = "/home/home.html";
         }
+      
     })
     .catch((error) => {
       console.error("Error:", error);
