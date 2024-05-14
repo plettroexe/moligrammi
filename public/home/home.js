@@ -3,36 +3,12 @@ const home = document.getElementById("home");
 const modal = new bootstrap.Modal("#Modal", {});
 const buttModal = document.getElementById("buttonModal");
 
-buttModal.onclick = async () => {
+buttModal.onclick = () => {
 
     modal.show();
 
 }
 
-
-const templateCard = `
-<div class="col-md-4 mt-3">
-<div class="card">
-    <img src="data:image/jpeg;base64,{src}" class="card-img-top" alt="...">
-    <div class="card">
-                            <div class="card-body">
-                                <p class="card-like">Like 0</p>
-                                <p class="card-comments">Commenti 0</p>
-                            </div>
-                        </div>
-</div>
-</div>
-`;
-
-function renderPost() {
-
-    
-    
-}
-
-renderPost();
-
-//FUNZIONE PER VISUALIZZARE I POST NELLA HOME PAGE 
 const getAllPost = () => {
   return new Promise((resolve, reject) => {
     fetch("/homepage", {
@@ -44,12 +20,52 @@ const getAllPost = () => {
       .then((response) => response.json())
       .then((json) => {
         resolve(json);
+        console.log("post: ", json);
       })
       .catch((error) => {
         reject(error);
       });
   });
 };
+
+getAllPost();
+
+const templateCard = `
+<div class="col-md-4 mt-3">
+<div class="card">
+    <img src="data:image/jpeg;base64,{src}" class="card-img-top" alt="...">
+    <div class="card">
+     <div class="card-body">
+     <p class="card-like">Like 0</p>
+     <p class="card-comments">Commenti 0</p>
+     </div>
+    </div>
+</div>
+</div>
+`;
+/*
+function renderPost(data) {
+
+    let html = "";
+
+      for (let i = 0; i < data.length; i++) {
+
+        let rowHtml =
+          templateCard.replace('{nome}',
+            data[i].marca + " " + data[i].modello).replace('{idD}', "bottoneD" + i).replace('{descrizione}',
+              data[i].descrizione).replace('{src}', data[i].immagini[0]).replace('{idP}', "bottoneP" + i);
+
+        html += rowHtml;
+      }
+
+      vetrina.innerHTML = html;
+    
+}
+
+renderPost();
+*/ 
+
+
 //CREA POST
 const creaPost  = (postData) => {
   return new Promise((resolve, reject) => {
@@ -69,6 +85,7 @@ const creaPost  = (postData) => {
       });
   });
 };
+/*
 //cambia creaPostButton con il tuo const
 creaPostButton.onclick = () => {////creaPostButton è solo un'esempio
     const postData = {
@@ -237,6 +254,6 @@ const insertLikeCommento = (array) => {
 
   window.location.href = "/login/login.html";
 };
-
+*/
 
 
