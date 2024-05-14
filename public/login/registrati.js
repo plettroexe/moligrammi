@@ -30,7 +30,7 @@ RegisterButton.onclick = () => {
     password: pass.value,
   };
 
-  if(pass.value === confPass.value){
+  if(pass.value === confPass.value && verificaEmail(arrayutenze.username)){
   register(arrayutenze)
     .then((response) => {
       console.log("Response from server:", response);
@@ -48,3 +48,17 @@ RegisterButton.onclick = () => {
 function stampaConferma() {
       conferma.innerText = "Bravo, ti sei registrato!";
   }
+
+function verificaEmail(email) {
+   
+    const partiEmail = email.split('@');
+    const dominio = partiEmail[1];
+
+   
+    if (partiEmail.length === 2 && dominio === 'itis-molinari.eu') {
+        
+        return true;
+    } else {
+        return false;
+    }
+}
