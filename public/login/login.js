@@ -25,6 +25,8 @@ const Login = (ArrayUtenze) => {
   });
 };
 
+let log = false;
+
 //Login
 LoginButton.onclick = () => {
   let saveArray = {
@@ -36,8 +38,9 @@ LoginButton.onclick = () => {
     .then((response) => {
       console.log("Response from server:", response);
       if (response.result === "true") {
-         // window.location.href = "/testClient/test.html";
         window.location.href = "/home/home.html";
+        log = true;
+        sessionStorage.setItem('log', log);
         }
       
     })

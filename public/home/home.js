@@ -2,6 +2,16 @@
 const home = document.getElementById("home");
 const modal = new bootstrap.Modal("#Modal", {});
 const buttModal = document.getElementById("buttonModal");
+const divLog = document.getElementById("divLog");
+
+let log = sessionStorage.getItem('log');
+
+
+if(log){
+    console.log(log);
+    divLog.classList.remove("visible");
+    divLog.classList.add("hidden");
+}
 
 buttModal.onclick = () => {
 
