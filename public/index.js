@@ -1,40 +1,10 @@
-const Nome = document.getElementById("Nome");
-const pass = document.getElementById("Password");
+const utenteLoggato = true; // questo codice va cambiato
 
-const RegisterButton = document.getElementById("Register");
+if (utenteLoggato) {
+  document.location.href = "/home/home.html";
+} else {
+  document.location.href = "/login"
+}
+ 
 
-const register = (arrayUtenze) => {
-  return new Promise((resolve, reject) => {
-    fetch("/signin", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(arrayUtenze),
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        resolve(json);
-      })
-      .catch((error) => {
-        reject(error);
-      });
-  });
-};
 
-RegisterButton.onclick = () => {
-  let arrayutenze = {
-    username: Nome.value,
-    password: pass.value,
-  };
-
-  register(arrayutenze)
-    .then((response) => {
-      console.log("Response from server:", response);
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-
-  window.location.href = "/login/login.html";
-};
