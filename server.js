@@ -442,20 +442,3 @@ getPostByTag(req.nomeTag).then((result)=>{
     res.json({ matrice: result });
   });
 });
-
-
-//WEBSOCKET
-const { Server } = require('socket.io');
-const io = new Server(server);
-
-io.on('connection', (socket) => {
-  console.log("socket connected: " + user);//User variabile da prendere dalla cache remota
-  io.emit("chat", "User connected: " + user);
-
-  socket.on('message', (message) => {
-    const response = user + ':' + message;
-    console.log(response);
-    io.emit("chat", response);
-  });
-});
-
