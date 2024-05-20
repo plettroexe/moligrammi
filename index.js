@@ -136,12 +136,13 @@ getIDProfilo(username).then((result)=>{
 });
 
 //FUNZIONI PER CREARE IL POST PRENDE IN INGRESSO LE COSE INSERITE DA TASTIERA E IL NOME UTENTE E L'ID DEL PROFILO SALVATI IN CACHE. SE L'UTENTE METTERA' IL TAG, ANDRA' NEL DIZIONARIO DI INPUT COL NOME SCELTO PER IL TAG COME VALORE PER L'APPOSITA CHIAVE "TAG", INVECE SE L'UTENTE NON VUOLE METTERE UN TAG, ANDRA' NEL DIZIONARIO DI INPUT: "" COME CHIAVE DI"TAG"
-const creaPost = (username,idProfilo, dataora, descrizione, immagine, posizione, nomeTag ) => {
-    const template ="INSERT INTO Post (dataora,immagine, descrizione, likes, posizione, nomeUtente, IdProfilo, nomeTag) VALUES ('%DATAORA','%IMMAGINE','%DESCRIZIONE','0','%POSIZIONE','%USERNAME','%IDPROFILO','%NOMETAG')";
-    const sql = template.replace("%DATAORA", dataora).replace("%IMMAGINE",immagine).replace( "%DESCRIZIONE", descrizione).replace("%POSIZIONE", posizione).replace("%USERNAME", username).replace("%IDPROFILO", idProfilo).replace("%NOMETAG", nomeTag);
+const creaPost = (username, descrizione) => {
+    const template ="INSERT INTO Post (immagine, descrizione) VALUES ('%IMMAGINE','%DESCRIZIONE')";
+    const sql = template.replace("%IMMAGINE",immagine).replace( "%DESCRIZIONE", descrizione);
     executeQuery(sql)
 
 };
+
 
 const usaTag=(nomeTag)=>{
     const template =" SELECT nome, utilizzi FROM tag WHERE nome = '%NAME'";
@@ -172,19 +173,9 @@ const aggiornaTag=(name, utilizzi)=>{
 }
 
 app.post("/creaPost", (req, res) => {
-  const username = req.body.username;
-  const tag = req.body.tag;
-  const posizione = req.body.posizione;
   const descrizione = req.body.descrizione;
   const immagine = req.body.immagine;
-  const dataora = req.body.dataora;
-  const idProfilo = req.body.idProfilo;
-  if(tag===""){
-    creaPost(username,idProfilo, dataora, descrizione, immagine, posizione, tag);
-  }else{
-    usaTag(tag);
-    creaPost(username,idProfilo, dataora, descrizione, immagine, posizione, tag);
-  }
+    creaPost(descrizione, immagine);
 });
 
 //FUNZIONE PER VISUALIZZARE I POST NELLA HOME PAGE (DA RANDOMIZZARE NELLA STAMPA;

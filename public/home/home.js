@@ -3,15 +3,10 @@ const home = document.getElementById("home");
 const modal = new bootstrap.Modal("#Modal", {});
 const buttModal = document.getElementById("buttonModal");
 const divLog = document.getElementById("divLog");
-
+const caption = document.getElementById("caption");
+const image = document.getElementById("immagini");
 let log = sessionStorage.getItem('log');
-
-
-if(log){
-    console.log(log);
-    divLog.classList.remove("visible");
-    divLog.classList.add("hidden");
-}
+const posta = document.getElementById("posta");
 
 buttModal.onclick = () => {
 
@@ -46,6 +41,7 @@ const templateCard = `
     <img src="data:image/jpeg;base64,{src}" class="card-img-top" alt="...">
     <div class="card">
      <div class="card-body">
+     <p id="caption">{caption}</p>
      <p class="card-like">Like 0</p>
      <p class="card-comments">Commenti 0</p>
      </div>
@@ -53,27 +49,22 @@ const templateCard = `
 </div>
 </div>
 `;
-/*
-function renderPost(data) {
+
+function renderPost(postData) {
 
     let html = "";
 
-      for (let i = 0; i < data.length; i++) {
-
         let rowHtml =
-          templateCard.replace('{nome}',
-            data[i].marca + " " + data[i].modello).replace('{idD}', "bottoneD" + i).replace('{descrizione}',
-              data[i].descrizione).replace('{src}', data[i].immagini[0]).replace('{idP}', "bottoneP" + i);
+          templateCard.replace('{src}', postData.immagine).replace('{caption}', postData.descrizione);
 
         html += rowHtml;
-      }
 
-      vetrina.innerHTML = html;
+      home.innerHTML = html;
     
 }
 
 renderPost();
-*/ 
+
 
 
 //CREA POST
@@ -95,17 +86,14 @@ const creaPost  = (postData) => {
       });
   });
 };
-/*
+
+const postData = {};
+
 //cambia creaPostButton con il tuo const
-creaPostButton.onclick = () => {////creaPostButton è solo un'esempio
-    const postData = {
-        username: "",
-        tag: "",
-        posizione:"",
+posta.onclick = () => {////creaPostButton è solo un'esempio
+    postData = {
         descrizione: "",
         immagine: "",
-        dataora: "",
-        idProfilo: ""
     }
     creaPost(postData)
     .then((response) => {
@@ -119,7 +107,7 @@ creaPostButton.onclick = () => {////creaPostButton è solo un'esempio
 
 
 
-
+/*
 
 //FUNZIONE PER VISUALIZZARE I POST DI UN PROFILO A SCELTA ( ANCHE IL PROPRIO), PRENDE IN INGRESSO L'ID DEL PROFILO. 
 const getPostBy = (NomeProfilo) => {
