@@ -50,20 +50,18 @@ const templateCard = `
 </div>
 `;
 
-function renderPost(postData) {
-
-    let html = "";
-
-        let rowHtml =
-          templateCard.replace('{src}', postData.immagine).replace('{caption}', postData.descrizione);
-
-        html += rowHtml;
-
-      home.innerHTML = html;
-    
-}
-
-renderPost();
+const renderPosts = () => {
+  let html = "";
+  getAllPost().then((posts) => {
+    posts.forEach((post) => {
+      let cardHtml = templateCard.replace("{src}", post.image);
+      html += cardHtml;
+    });
+    document.getElementById("container").innerHTML = html;
+  }).catch((error) => {
+    console.error("Errore durante il recupero dei post:", error);
+  });
+};
 
 
 
@@ -87,7 +85,7 @@ const creaPost  = (postData) => {
   });
 };
 
-const postData = {};
+let postData = {};
 
 //cambia creaPostButton con il tuo const
 posta.onclick = () => {////creaPostButton è solo un'esempio
@@ -98,6 +96,7 @@ posta.onclick = () => {////creaPostButton è solo un'esempio
     creaPost(postData)
     .then((response) => {
         console.log("successo", response);
+        renderPosts();
         
     })
     .catch((error) => {
